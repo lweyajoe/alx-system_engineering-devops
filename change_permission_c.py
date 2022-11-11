@@ -5,7 +5,7 @@ import time
 import sys
 
 directory = sys.argv[1]
-command = "chmod +x"; check_interval = 5; extensions = ("")
+command = "chmod u+x"; check_interval = 5
 
 def current_files():
     read = subprocess.check_output(["ls", directory]).decode("utf-8").strip()
