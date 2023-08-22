@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 # Restart an apache 2 server in our docker container
-service apache2 restart
+#!/usr/bin/env bash
+#Fix curl error message by starting Apache server
+
+sudo service apache2 start
