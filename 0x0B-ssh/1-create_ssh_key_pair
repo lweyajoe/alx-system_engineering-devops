@@ -4,7 +4,6 @@
 # Name of the created private key must be holberton
 # The created key must be protected by the passphrase betty
 
-
 # Set variables
 private_key_name="school"
 key_bits=4096
@@ -14,8 +13,8 @@ passphrase="betty"
 openssl genpkey -algorithm RSA -out "$private_key_name.pem" -aes256 -pass pass:"$passphrase" -pkeyopt rsa_keygen_bits:"$key_bits"
 
 # Extract public key from private key
-openssl rsa -pubout -in "$private_key_name.pem" -out "$private_key_name.pub.pem"
+openssl rsa -pubout -in "$private_key_name.pem" -out "$private_key_name.pub"
 
 echo "RSA key pair created:"
 echo "Private key: $private_key_name.pem"
-echo "Public key: $private_key_name.pub.pem"
+echo "Public key: $private_key_name.pub"
