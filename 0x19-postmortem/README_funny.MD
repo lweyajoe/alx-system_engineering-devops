@@ -1,3 +1,5 @@
+# Pathologist's Report
+
 **Issue Summary:**
 Well, folks, gather 'round! On 01/08/2023,, our job board project decided to take a little break, like a mischievous cat knocking over your coffee mug. This unexpected hiatus lasted approximately 3 generations, and during this impromptu siesta, our platform decided to moonlight as a sloth. Users experienced the frustration of slower-than-molasses loading times, and some even wondered if they'd accidentally wandered into the dial-up era. Approximately all of our users joined the slow-motion party. So, what was the root cause of this unplanned sluggishness, you ask? Brace yourselves—it was none other than a web server that had apparently mistaken itself for a contestant in a "Snail Race to the Server Farm" competition!
 
