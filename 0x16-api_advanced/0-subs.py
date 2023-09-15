@@ -1,38 +1,16 @@
 #!/usr/bin/python3
-
+"""Function to query subscribers on a given Reddit subreddit."""
 import requests
 
+
 def number_of_subscribers(subreddit):
-    # Set a custom User-Agent to identify your application
+    """Return the total number of subscribers on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {
-        'User-Agent': 'MyRedditScraper/1.0 (by YourUsername)'
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
-
-    # URL to query for subreddit information
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-
-    try:
-        # Send a GET request to the Reddit API
-        response = requests.get(url, headers=headers)
-
-        # Check if the request was successful (HTTP status code 200)
-        if response.status_code == 200:
-            # Parse the JSON response
-            data = response.json()
-
-            # Extract the number of subscribers from the response
-            subscribers = data['data']['subscribers']
-
-            return subscribers
-        else:
-            # Request was not successful, return 0 for invalid subreddit
-            return 0
-    except Exception as e:
-        # Handle exceptions (e.g., network errors)
-        print(f"An error occurred: {e}")
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-
-# Example usage:
-subreddit_name = 'learnpython'
-subscribers = number_of_subscribers(subreddit_name)
-if subscribers != 0:
+    results = response.json().get("data")
+    return results.get("subscribers")
