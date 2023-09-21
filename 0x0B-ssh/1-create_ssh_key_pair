@@ -33,13 +33,17 @@ ssh-keygen -t rsa -b $BITS -f $KEY_NAME -N "$PASSPHRASE" <<EOF
 y
 EOF
 
+# Get the key fingerprint and randomart image
+KEY_FINGERPRINT=$(ssh-keygen -l -f $KEY_NAME.pub)
+RANDOMART_IMAGE=$(ssh-keygen -l -v -f $KEY_NAME.pub | tail -n 1)
+
 # Display the SSH-key generation output
 cat <<EOF
 Generating public/private rsa key pair.
 Your identification has been saved in $KEY_NAME.
 Your public key has been saved in $KEY_NAME.pub.
 The key fingerprint is:
-$(ssh-keygen -l -f $KEY_NAME.pub)
+$KEY_FINGERPRINT
 The key's randomart image is:
-$(ssh-keygen -l -v -f $KEY_NAME.pub | tail -n 1)
+$RANDOMART_IMAGE
 EOF
