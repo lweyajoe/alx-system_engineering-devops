@@ -1,49 +1,23 @@
 #!/usr/bin/env bash
 # Bash script that creates a RSA key pair
-# Number of bits in the created key to be created 4096
-# Name of the created private key must be school
-# The created key must be protected by the passphrase betty
-
-# Set variables
-#private_key_name="school"
-#key_bits=4096
-#passphrase="betty"
-
-# Generate RSA key pair
-#openssl genpkey -algorithm RSA -out "$private_key_name" -aes256 -pass pass:"$passphrase" -pkeyopt rsa_keygen_bits:"$key_bits"
-
-# Extract public key from private key
-#openssl rsa -pubout -in "$private_key_name" -out "$private_key_name.pub"
-
-#echo "Generating public/private rsa key pair."
-#echo "Your identification has been saved in $private_key_name"
-#echo "Your public key has been saved in $private_key_name.pub"
-#echo "The key fingerprint is: $(ssh-keygen -l -f $KEY_NAME.pub)"
-
 # Define the key file name and number of bits
 KEY_NAME="school"
 BITS=4096
 
 # Prompt for the passphrase
-read -sp "Enter passphrase for the private key: " betty
+read -sp "Enter passphrase for the private key: " PASSPHRASE
 echo
 
 # Generate the RSA key pair with the specified requirements
-ssh-keygen -t rsa -b $BITS -f $KEY_NAME -N "$PASSPHRASE" <<EOF
+{
+  echo "Generating public/private rsa key pair."
+  echo "Your identification has been saved in $KEY_NAME."
+  echo "Your public key has been saved in $KEY_NAME.pub."
+  ssh-keygen -t rsa -b $BITS -f $KEY_NAME -N "$PASSPHRASE" <<EOF
 y
 EOF
-
-# Get the key fingerprint and randomart image
-KEY_FINGERPRINT=$(ssh-keygen -l -f $KEY_NAME.pub)
-RANDOMART_IMAGE=$(ssh-keygen -l -v -f $KEY_NAME.pub | tail -n 1)
-
-# Display the SSH-key generation output
-cat <<EOF
-Generating public/private rsa key pair.
-Your identification has been saved in $KEY_NAME.
-Your public key has been saved in $KEY_NAME.pub.
-The key fingerprint is:
-$KEY_FINGERPRINT
-The key's randomart image is:
-$RANDOMART_IMAGE
-EOF
+  echo "The key fingerprint is:"
+  ssh-keygen -l -f $KEY_NAME.pub
+  echo "The key's randomart image is:"
+  ssh-keygen -l -v -f $KEY_NAME.pub | tail -n 1
+} 2>&1
