@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script that compress a SQL dump
+sudo mysqldump --all-databases -u root -p"$1" > backup.sql
+sudo tar -czvf "$(date '+%d-%m-%Y').tar.gz" backup.sql
