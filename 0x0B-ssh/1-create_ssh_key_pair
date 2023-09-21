@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Bash script that creates a RSA key pair
 # Number of bits in the created key to be created 4096
-# Name of the created private key must be holberton
+# Name of the created private key must be school
 # The created key must be protected by the passphrase betty
 
 # Set variables
@@ -10,11 +10,11 @@ key_bits=4096
 passphrase="betty"
 
 # Generate RSA key pair
-openssl genpkey -algorithm RSA -out "$private_key_name.pem" -aes256 -pass pass:"$passphrase" -pkeyopt rsa_keygen_bits:"$key_bits"
+openssl genpkey -algorithm RSA -out "$private_key_name" -aes256 -pass pass:"$passphrase" -pkeyopt rsa_keygen_bits:"$key_bits"
 
 # Extract public key from private key
-openssl rsa -pubout -in "$private_key_name.pem" -out "$private_key_name.pub"
+openssl rsa -pubout -in "$private_key_name" -out "$private_key_name.pub"
 
 echo "RSA key pair created:"
-echo "Private key: $private_key_name.pem"
+echo "Private key: $private_key_name"
 echo "Public key: $private_key_name.pub"
