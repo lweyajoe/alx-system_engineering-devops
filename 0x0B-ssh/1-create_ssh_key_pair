@@ -15,6 +15,6 @@ openssl genpkey -algorithm RSA -out "$private_key_name" -aes256 -pass pass:"$pas
 # Extract public key from private key
 openssl rsa -pubout -in "$private_key_name" -out "$private_key_name.pub"
 
-echo "RSA key pair created:"
-echo "Private key: $private_key_name"
-echo "Public key: $private_key_name.pub"
+echo "Generating public/private rsa key pair."
+echo "Your identification has been saved in $private_key_name"
+echo "Your public key has been saved in $private_key_name.pub"
