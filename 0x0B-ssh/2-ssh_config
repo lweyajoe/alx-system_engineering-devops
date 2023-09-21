@@ -1,4 +1,5 @@
-# school server config options
-Host 100.25.140.141
-    IdentityFile ~/.ssh/school
-    Protocol 2
+#!/usr/bin/env bash
+#school server config options
+Host 98.98.98.98
+  IdentityFile ~/.ssh/school
+  PasswordAuthentication no
